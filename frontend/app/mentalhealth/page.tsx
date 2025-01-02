@@ -1,4 +1,4 @@
-"use client"
+
 import React from 'react'
 import Link from 'next/link';
 import Image from 'next/image';
@@ -20,7 +20,7 @@ async function getData() {
     return data;
 }
 
-// export const revalidate = 60;  //revalidates the page every 60 seconds
+export const revalidate = 60;  //revalidates the page every 60 seconds
 
 export default async function MentalhealthPage () {
   const data = await getData() as Mentalhealth[];

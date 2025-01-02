@@ -1,8 +1,21 @@
 /* eslint-disable @next/next/no-sync-scripts */
 "use client";
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 const MailchimpForm: React.FC = () => {
+  const [email, setEmail] = useState("");
+
+  useEffect(() => {
+    const script = document.createElement("script");
+    script.src = "//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js";
+    script.async = true;
+    document.body.appendChild(script);
+
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
+
   return (
     <>
       <div id="mc_embed_signup">
@@ -15,26 +28,28 @@ const MailchimpForm: React.FC = () => {
           target="_blank"
         >
           <div id="mc_embed_signup_scroll" className="py-16">
-            <div className="gap-4 mb-4 ">
+            <div className="gap-4 mb-4">
               <div className="mc-field-group">
-                <h1 className=" mb-5  pb-4  text-center font-bold text-3xl">
+                <h1 className="mb-5 pb-4 text-center font-bold text-3xl">
                   Subscribe to My Newsletter
                 </h1>
                 <h3 className="text-lg pb-5">
-                  Receive inspiring articles and other exclusive content from
-                  myself. <br />
-                  You&apos;ll never receive any spam and can always unsubscribe.{" "}
+                  Receive inspiring articles and other exclusive content.{" "}
+                  <br />
+                  You&apos;ll never receive any spam and can always unsubscribe.
                 </h3>
-                {/* <label htmlFor="mce-EMAIL">
-                  Email Address <span className="asterisk">*</span>
-                </label> */}
+                <label htmlFor="mce-EMAIL" className="sr-only">
+                  Email Address
+                </label>
                 <input
                   type="email"
                   name="EMAIL"
                   className="required email py-3 px-4 outline-none w-96 rounded-lg focus:ring-2 focus:ring-gray-200 bg-gray-100 text-gray-700 mr-2"
                   id="mce-EMAIL"
-                  required={true}
-                  value=""
+                  required
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="Enter your email"
                 />
               </div>
               <div id="mce-responses" className="clear foot">
@@ -53,12 +68,11 @@ const MailchimpForm: React.FC = () => {
                 aria-hidden="true"
                 style={{ position: "absolute", left: "-5000px" }}
               >
-                {/* real people should not fill this in and expect good things - do not remove this or risk form bot signups */}
                 <input
                   type="text"
                   name="b_efc91b873cd732a78331f7746_b4984a8359"
                   tabIndex={-1}
-                  value=""
+                  // value=""
                 />
               </div>
             </div>
@@ -76,21 +90,6 @@ const MailchimpForm: React.FC = () => {
           </div>
         </form>
       </div>
-      <script
-        src="//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js"
-        type="text/javascript"
-      ></script>
-      <script
-        dangerouslySetInnerHTML={{
-          __html: ` 
-            (function($) {
-              window.fnames = new Array(); window.ftypes = new Array();
-              fnames[0]='EMAIL';ftypes[0]='email';fnames[1]='FNAME';ftypes[1]='text';fnames[2]='LNAME';ftypes[2]='text';fnames[3]='ADDRESS';ftypes[3]='address';fnames[4]='PHONE';ftypes[4]='phone';fnames[5]='BIRTHDAY';ftypes[5]='birthday';
-            }(jQuery));
-            var $mcj = jQuery.noConflict(true);
-          `,
-        }}
-      />
     </>
   );
 };

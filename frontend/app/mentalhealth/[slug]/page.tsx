@@ -111,37 +111,31 @@ export default async function MentalHealthSlugPage({ params }: PageProps) {
                 Related Posts
               </h3>
               {mentalhealthData.map((mentalhealth) => (
-                <div key={mentalhealth._id}>
-                  <Link href={`/mentalhealth/${mentalhealth.slug.current}`}>
-                    <div className="flex items-center w-full mb-4">
-                      <div className="w-16 flex-none">
-                        {mentalhealth.mainImage && (
-                          <Image
-                            src={mentalhealth.mainImage}
-                            alt="image"
-                            width={60}
-                            height={60}
-                            className="align-middle rounded-full"
-                          />
-                        )}
-                      </div>
-                      <div className="flex-grow ml-4">
-                        <p className="text-gray-500 font-xs">
-                          {new Date(mentalhealth._createdAt)
-                            .toISOString()
-                            .split("T")[0]}
-                        </p>
-                        <Link
-                          href={`/mentalhealth/${mentalhealth.slug.current}`}
-                          className="text-md hover:text-purple-600"
-                        >
-                          {mentalhealth.title}
-                        </Link>
-                      </div>
-                    </div>
-                  </Link>
-                </div>
-              ))}
+  <Link
+    key={mentalhealth._id}
+    href={`/mentalhealth/${mentalhealth.slug.current}`}
+    className="flex items-center w-full mb-4"
+  >
+    <div className="w-16 flex-none">
+      {mentalhealth.mainImage && (
+        <Image
+          src={mentalhealth.mainImage}
+          alt="image"
+          width={60}
+          height={60}
+          className="align-middle rounded-full"
+        />
+      )}
+    </div>
+    <div className="flex-grow ml-4">
+      <p className="text-gray-500 font-xs">
+        {new Date(mentalhealth._createdAt).toISOString().split("T")[0]}
+      </p>
+      <p className="text-md hover:text-purple-600">{mentalhealth.title}</p>
+    </div>
+  </Link>
+))}
+
             </div>
           </div>
         </div>
