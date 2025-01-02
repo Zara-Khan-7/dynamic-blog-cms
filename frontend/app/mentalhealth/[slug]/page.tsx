@@ -3,6 +3,7 @@ import { Mentalhealth } from "@/app/lib/interface";
 import { client } from "@/app/lib/sanity";
 import { PortableText } from "@portabletext/react";
 import { urlFor } from "@/app/lib/sanityImageUrl";
+import Comment from "@/app/components/Comment";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -111,34 +112,38 @@ export default async function MentalHealthSlugPage({ params }: PageProps) {
                 Related Posts
               </h3>
               {mentalhealthData.map((mentalhealth) => (
-  <Link
-    key={mentalhealth._id}
-    href={`/mentalhealth/${mentalhealth.slug.current}`}
-    className="flex items-center w-full mb-4"
-  >
-    <div className="w-16 flex-none">
-      {mentalhealth.mainImage && (
-        <Image
-          src={mentalhealth.mainImage}
-          alt="image"
-          width={60}
-          height={60}
-          className="align-middle rounded-full"
-        />
-      )}
-    </div>
-    <div className="flex-grow ml-4">
-      <p className="text-gray-500 font-xs">
-        {new Date(mentalhealth._createdAt).toISOString().split("T")[0]}
-      </p>
-      <p className="text-md hover:text-purple-600">{mentalhealth.title}</p>
-    </div>
-  </Link>
-))}
+              <Link
+                key={mentalhealth._id}
+                href={`/mentalhealth/${mentalhealth.slug.current}`}
+                className="flex items-center w-full mb-4"
+              >
+                <div className="w-16 flex-none">
+                  {mentalhealth.mainImage && (
+                    <Image
+                      src={mentalhealth.mainImage}
+                      alt="image"
+                      width={60}
+                      height={60}
+                      className="align-middle rounded-full"
+                    />
+                  )}
+                </div>
+                <div className="flex-grow ml-4">
+                  <p className="text-gray-500 font-xs">
+                    {new Date(mentalhealth._createdAt).toISOString().split("T")[0]}
+                  </p>
+                  <p className="text-md hover:text-purple-600">{mentalhealth.title}</p>
+                </div>
+              </Link>
+            ))}
 
             </div>
           </div>
         </div>
+      </div>
+
+      <div>
+        <Comment/>
       </div>
     </>
   );
