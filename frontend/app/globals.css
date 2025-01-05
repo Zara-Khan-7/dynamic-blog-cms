@@ -15,10 +15,12 @@
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
   font-family:"Belleza", sans-serif, Arial, Helvetica;
   font-display: swap;  /* Ensures the text is visible while the font is loading */
+  background-color: #fff; /* Ensure background is solid */
+  color: #333; /* Ensure text is not faint */
+  
+  
 }
 
 @layer utilities {
