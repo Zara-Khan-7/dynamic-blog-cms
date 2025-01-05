@@ -25,6 +25,7 @@ export default function RootLayout({
       <Head>
         {/* Add the viewport meta tag for responsive design */}
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="color-scheme" content="light dark" />
         <title>ZK Blogs</title> {/* You can set the title here or in metadata */}
       </Head>
       <body className={belleza.className}>

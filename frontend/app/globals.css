@@ -17,7 +17,8 @@
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family:"Belleza", serif;
+  font-family:"Belleza", sans-serif, Arial, Helvetica;
+  font-display: swap;  /* Ensures the text is visible while the font is loading */
 }
 
 @layer utilities {
